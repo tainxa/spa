@@ -78,27 +78,36 @@
 
 	function drawpath(f)
 	{
-		if (selected.length != 2)
-		{	txtmsg.innerHTML = "(Double Click to select nodes)!";	 return }
-		displacement();		if(defaultmap) mapping(); else custom();
+		if (selected.length != 2)	return txtmsg.innerHTML = "(Double Click to select nodes)!";
+
+		document.getElementById('audio').play()
+		displacement();
+		if(defaultmap) 
+			mapping(); 
+		else
+			custom();
 
 		var graph = new Graph(links);
 		var spa1 = graph.findShortestPath(selected[0], selected[1]);
 		
 		if (f)
     	{	var spa = spa1;
-    		check1 = true;  }
+    		check1 = true;
+    	}
     	else
     	{	var spa = lnp(arrmap, spa1, selected[0], selected[1]);
-    		check1 = false;  }	
+    		check1 = false;
+    	}	
 
     	inway = spa.slice(1,-1);
     	inwayst();
 
-		var path = (spa.map( function(v,i) {
-					if(i==0){return "M"+(circles[v.slice(1)]).x+" "+(circles[v.slice(1)]).y}
-		  	 			else{return "L"+(circles[v.slice(1)]).x+" "+(circles[v.slice(1)]).y;} 
-		 			})).join(" ");
+		var path = (spa.map((v,i) => {
+			if(i==0)
+				return "M"+(circles[v.slice(1)]).x+" "+(circles[v.slice(1)]).y
+		  	else
+		  		return "L"+(circles[v.slice(1)]).x+" "+(circles[v.slice(1)]).y
+		 })).join(" ");
 
 		d3.selectAll("#sp").remove();
  		svg.selectAll("path").data("data")
@@ -106,7 +115,7 @@
 		.attr("d",  path)
 		.attr("id",  "sp")
 		.attr("class",  "sp")
-		.attr("stroke", "lime")
+		.attr("stroke", "#0362ff")
 		.attr("stroke-width", 8)
 		.attr("fill", "none")
 		.style("opacity",0.5);

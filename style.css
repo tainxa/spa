@@ -338,7 +338,7 @@
 
 .choose{
 
-	stroke: lime;
+	stroke: #0362ff;
 	stroke-width : 12;
 	stroke-dasharray: 15.8,4;
 	animation: focus 80s linear forwards;
@@ -363,6 +363,6 @@
   }
   to {
     stroke-dashoffset: 7000;
-    stroke: lime;
+    stroke: #0362ff;
   }
 }
