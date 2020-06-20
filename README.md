@@ -2,7 +2,7 @@
 <p align="center"><img src="spa.png" width="50%"></p>
 
 
-Live Project: <a href="tainxa.com/spa">Tainxa/SPA<a>
+Live Project: <a href="http://tainxa.com/spa" target="_blank">Tainxa/SPA<a>
 
 # Shortest Path
 <p align="center"><img src="images/shortest-path.png"></p>

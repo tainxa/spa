@@ -226,7 +226,7 @@
 	
 	function load(){	drawnodes("s"); label('b')	}
 	
-	function toggle(){	if(g1){svg.style("background", "url('map2.png')"); g1=0;}else {svg.style("background-image", "none").style("background-color","LemonChiffon");g1=1;}}
+	function toggle(){	if(g1){svg.style("background", "url('map2.png')"); g1=0;}else {svg.style("background-image", "none").style("background-color","white");g1=1;}}
 
 	function trans(fl)
 	{
@@ -236,7 +236,7 @@
 		{
 			lnp1.innerHTML = "LNP";
 			sdp.style.width="150px";
-			sdp.style.backgroundColor="lime";
+			sdp.style.backgroundColor="#019428";
 			lnp1.style.width="60px";
 			sdp.innerHTML = "Short Distance Path";
 			lnp1.style.backgroundColor="orange";
@@ -245,7 +245,7 @@
 		{
 			sdp.innerHTML = "SDP";
 			lnp1.style.width="150px";
-			lnp1.style.backgroundColor="lime";
+			lnp1.style.backgroundColor="#019428";
 			sdp.style.width="60px";
 			lnp1.innerHTML = "Least Node Path";
 			sdp.style.backgroundColor="orange";
