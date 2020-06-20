@@ -1,0 +1,382 @@
+/**{margin: 0;}*/
+#maindiv{
+	width: 1342px;
+	margin: 5px auto;
+}
+#head{
+		background-color: yellow;
+		width: 1340px;
+		height: 50px;
+	  }
+
+#contain{
+	width: 550px;
+	height: 50px;
+	float: left;
+	position: relative;
+	
+}
+#svg{
+		background: lightsalmon;
+	}
+.mysvg{
+	background-color: lemonchiffon;
+}
+
+#reset{
+		background-color: red;
+		width: 100px;
+	 	border-radius: 5px;
+	 	color: black;
+	 	float: left;
+	  }
+
+#sdp{
+ 		background-color: orange;
+		width: 60px;
+		margin-left: 3px;
+		border-top-right-radius: 25px;
+		border-bottom-right-radius: 25px;
+		float: left;
+		
+		
+	  }
+#lnp{
+ 		background-color: orange;
+		width: 60px;
+		margin-right: 3px;
+		border-top-left-radius: 25px;
+		border-bottom-left-radius: 25px;
+		float: right;
+		
+	  }
+#reset,#sdp,#lnp{
+		margin-top: 5px;
+		height: 40px;
+		cursor: pointer;
+		outline-style: none;
+		border: none;
+		overflow: hidden;
+    	text-overflow: ellipsis; 
+		transition: all 0.5s;
+		color: white;
+		text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px;
+
+		}
+
+#rset{	float: left;
+	line-height: 40px;
+
+	  }
+
+#save{
+	line-height: 40px;
+	background-color: forestgreen;
+ 			
+		
+	  }
+#alive{
+	line-height: 40px;
+	background-color: lime;
+		
+	  }
+#mapbtn{
+	line-height: 40px;
+	float: right;
+	background-color: forestgreen;
+}
+#nutral{
+	line-height: 40px;
+	float: right;
+	background-color: blue;
+}
+#unode{
+	line-height: 16px;
+	float: right;
+	background-color: ;
+	
+}
+#uline{
+	line-height: 16px;
+	float: right;
+	
+}
+#delnode{
+	line-height: 16px;
+	float: right;
+	
+}
+.btn2{
+	margin-top: 3pt;
+}
+.edbtn{
+		width: 50px;
+		margin-top: 5px;
+		height: 40px;
+		cursor: pointer;
+		outline-style: none;
+		border: none;
+		transition: all 0.5s;
+		color: white;
+		text-align: center;
+		background-color: red;
+		text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px;
+		float: left;
+		border-radius: 5px;
+		margin: 5px 1px;
+
+		}
+
+#reset:hover,#sdp:hover,#lnp:hover{
+		background-color: lime;
+		}
+
+
+
+#msg,#msg1,#msg2{	
+		background-color:PapayaWhip  ;
+		width: 400px;
+		height: 40px;
+		float: right;
+		margin: 5px 12px 0 0;
+		line-height: 40px;
+		text-align: center; 
+		font-family: arial;
+		font-size: 20pt;
+		overflow: hidden;
+		color: gold	;
+		font-weight : 60;
+		text-shadow:0px 0px 3px black;
+		transition: font-size 0.5s;
+
+	}
+
+#msg1{
+	color: red;
+	width: 150px;
+	font-size: 18pt;
+}
+#msg2{
+	color: red;
+	width: 150px;
+	font-size: 13pt;
+	line-height: 20px
+}
+#map,#edit{
+	outline: none;
+	border: none;
+	height: 50px;
+	width: 60px;
+	font-family: "arial", Georgia, Serif;
+	line-height: 50px;
+	font-size: 14pt;
+	text-align: center;
+	margin: 0px 1px;
+	float: right;
+	background-color: forestgreen;
+	color: white;
+	text-shadow: 0 0 8px #fff;
+	cursor: pointer;
+}
+#edit{
+	background-color: crimson;
+}
+
+.map1{
+	outline: none;
+	border: none;
+	height: 44px;
+	width: 65px;
+	font-family: "arial", Georgia, Serif;
+	line-height: 18px;
+	font-size: 11pt;
+	text-align: center;
+	margin: 4px 3px;
+	float: right;
+	background-color: limegreen;
+	color: white;
+	cursor: pointer;
+	user-select: none;
+	border-radius: 5px;
+	text-shadow: 0 0 8px #fff;
+}
+.modal-body{
+	border: 3px solid black;
+	width: 90%;
+	margin: auto;
+	border-radius: 25px
+}
+.maplist{
+	text-indent: 20px;
+	height: 50px;
+	font-size: 14pt;
+	line-height: 50px;
+	width: 95%;
+	margin: 20px auto;
+	border: 1px solid gray;
+	border-radius: 15px;
+
+}
+.btn1{
+	float: right;
+	margin: 7px 10px;
+	outline: none;
+	border: none;
+}
+
+#dislab{
+	 /*text-shadow:3px 3px 10px black*/
+	 /*text-shadow: 2px 2px white;*/
+}
+#logo{
+	margin-left: 20px;
+	float: left;
+}
+#spal{	width: 300px;
+		height: 40px;
+ 		float: left;
+ 		margin-left: 80px;
+ 		position: absolute;
+ 		cursor: pointer;
+ 		user-select: none;
+ 		line-height: 50px; 
+ 		text-align: center;
+ 		font-size: 18pt;
+ 		color: white;
+ 		text-shadow: 0 0 5px pink;
+ 		text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px #fff, 0 0 10px #FF1177;
+ 		transition: font-size 0.5s;
+ 	}
+ 	#spaledit{
+ 		float: left;
+ 		width: 250px;
+ 		height: 50px;
+ 		margin-left: 5px;
+ 		font-size: 16pt;
+ 		line-height: 50px; 
+ 		text-align: center;
+ 		color: white;
+ 		text-shadow: 0 0 5px pink;
+ 		text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px #fff, 0 0 10px #FF1177;
+ 		transition: font-size 0.5s;
+ 	}
+
+
+
+#spal:hover{	
+		
+ 		
+ 		font-size: 21pt;
+ 		color: white;
+
+ 		text-shadow: 0 0 5px pink;
+ 		text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px #fff, 0 0 10px #FF1177,0 0 2px #fff, 0 0 5px #fff, 0 0 8px #fff, 0 0 10px #FF1177
+ 	}
+
+
+#msg:hover{
+
+		background-color: yellow;
+		color: red;
+		}
+
+#getname{
+		border-radius: 15px;
+		float: left;
+		margin-left: 20px;
+		text-indent: 20px;
+		outline: none;
+		border: 1px solid black;
+}
+#warning{
+	color: red;
+	text-decoration: underline;
+	text-indent: -100px;
+}
+#Name{
+	float: left;
+	height: 100px;
+	width:  170px;
+	text-indent: 50px;
+}
+
+.sp{
+		stroke-dashoffset: 2500;
+		stroke-dasharray: 2500;
+		animation: dash 7s forwards;
+}
+
+@keyframes dash {
+  to{
+    stroke-dashoffset: 0;
+
+  }
+}
+
+.lines{
+		stroke-dashoffset:2500;
+		stroke-dasharray: 2500;
+		animation: dash 5s ease-in-out 0s forwards;
+}
+.line{
+		stroke-dashoffset:2500;
+		stroke-dasharray: 2500;
+		animation: dash 3s ease 0s forwards;
+}
+
+.nodes{
+
+	
+	stroke-width : 10;
+	r:0px;
+	animation: pop 2s forwards;
+}
+
+
+@keyframes pop {
+  to {
+    r:25px;
+  }
+}
+
+.dislab{
+	opacity: 0;
+	animation: dist 2s linear 1s forwards;
+}
+
+@keyframes dist {
+  to {
+   opacity: 1;
+  }
+}
+
+.choose{
+
+	stroke: lime;
+	stroke-width : 12;
+	stroke-dasharray: 15.8,4;
+	animation: focus 80s linear forwards;
+}
+
+@keyframes focus {
+  to {
+    stroke-dashoffset: 8000;
+  }
+}
+
+.inway{
+	
+	stroke-width : 5;
+	stroke-dasharray: 15.3,4.5;
+	animation: inway 7s ease forwards;
+}
+
+@keyframes inway {
+  25%{
+    stroke: orange;
+  }
+  to {
+    stroke-dashoffset: 7000;
+    stroke: lime;
+  }
+}

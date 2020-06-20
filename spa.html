@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+
+<title>SPA</title>
+<link rel="icon" href="spa.png">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<script src="bootstrap/js/jquery-3.1.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<body onload="load()">
+<div id="maindiv">
+	<div id="head"><div id="contain">
+	<div id="logo"><img src="spa.png" width="50"></div>
+	<div id="spal">Shortest Path Algorithm</div>
+	<button id="lnp" onclick="drawpath(false);trans(0);">LNP</button> </div>
+	<button id="reset" onclick="trans(2);clearpath();" >Reset</button>
+	<button id="sdp" onclick="drawpath(true);trans(1);">SDP</button>
+	<div id="msg" onclick="toggle()"> Devel |Adeel&Subtain| opers</div>
+	<div id="map" data-toggle="modal" data-target="#manage-modal" onclick="showmaplist()">Map</div>
+	<div id="edit" onclick="edit()">Edit</div>
+	</div>
+
+	<svg width="1340" height="700" class="mysvg"></svg>
+	<!-- <button onclick="get()">Click to Get String</button><a href="editmap.html">
+	<button>Edit Map</button></a><br>
+	<div id="str"></div> -->
+
+
+</div>
+
+	<div id="manage-modal" class="modal fade" role="dialog">
+	  	<div class="modal-dialog">
+	  		<div class="modal-content">
+	  			<div class="modal-header">
+	  				<img src="spa.png" clSass="modal-title"  width="50">
+	  				<h3 class="modal-title text-center">Stored Maps</h3>
+	  			</div>
+	  			<div id="listbody" class="modal-body" >
+	  				<div class="maplist">Default Map <button class="btn btn-success btn1" onclick="setdefault()" data-dismiss="modal">Selected by Default</button></div>
+	  			</div>
+	  			<div class="modal-footer">
+	  				<button type="button" class="btn btn-danger" onclick="deleteall()">Delete All</button>
+	  				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	  			</div>
+	  		</div>
+	  	</div>
+	</div>
+
+	<script src="d3.min.js"> </script>
+	<script src="spa.js">	 </script>
+	<script src="lnp.js">	 </script>
+	<script src="mapping.js"></script>
+	<script src="main.js">	 </script>
+
+</body>
+</html>

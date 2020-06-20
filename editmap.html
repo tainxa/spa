@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EditMode</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" href="spa.png">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<script src="bootstrap/js/jquery-3.1.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="maindiv">
+<div id="head">
+	<div id="logo"><img src="spa.png" width="50"></div>
+	<div id="spaledit">Shortest Path Algorithm</div>
+	<div id="rset" class="edbtn" onclick="reset()">Reset</div>
+	<div id="save" class="edbtn" data-toggle="modal" data-target="#save-modal">Save</div>
+	<div id="alive" class="edbtn" onclick="view()">Alive</div>
+	<div id="msg1" onclick="toggle()"> Editing Mode</div>
+	<div id="msg2" onclick="toggle()"> Double Tap: Node Single Tap: Link</div>
+	<div id="unode"  class="edbtn" onclick="undonode()"><div class="btn2">Undo Node  </div></div>
+	<div id="uline"  class="edbtn" onclick="undoline()"><div class="btn2">Undo Line  </div></div>
+	<div id="delnode" class="edbtn" onclick="delnode(false)"><div class="btn2">Delete Node</div></div>
+	<div id="delnode" class="edbtn" onclick="delnode(true)"><div class="btn2">Delete Reline</div></div>
+	<div id="nutral" class="edbtn" onclick="nutral()">Nutral</div> 
+	<div id="mapbtn"  class="edbtn"  data-toggle="modal" data-target="#manage-modal" onclick="showmaplist()">MAP</div>
+</div>
+
+
+<svg width="1340" height="700" id="svg"></svg>
+
+</div>
+
+	<div id="save-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img src="spa.png" clSass="modal-title"  width="50">
+					<h3 class="modal-title text-center">Save your Map</h3>
+				</div>
+				<div  class="modal-body">
+					<div id="Name">Name of the Map: </div>
+					<input type="text" id="getname"><br><br>
+					<div id="warning">Warning : Using already existing name will cause overriding!</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="savemap()" >Save</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="manage-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img src="spa.png" clSass="modal-title"  width="50">
+					<h3 class="modal-title text-center">Stored Maps</h3>
+				</div>
+				<div id="listbody" class="modal-body" >
+					<div class="maplist">Default Map <button class="btn btn-success btn1" onclick="setdefault()" data-dismiss="modal">Selected by Default</button></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" onclick="deleteall()">Delete All</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<script type="text/javascript" src="d3.min.js"></script>
+<script src="mapping.js"></script>
+<script type="text/javascript">
+
+ var idc = 0; var idl= 0; var map = 0;
+var svg = d3.select("svg");
+var radius = 25;
+ var nodes = []; var selected  = []; var lindata=[];
+ var maplist = [];
+var index = [];
+var linedata = [];
+var circles  = [];
+
+ svg.on('dblclick', function(d){var co =d3.mouse(this); nodes.push({x: co[0], y: co[1] }); creatnode()})
+
+	if (localStorage.getItem('CurrentMap')!==undefined) 
+	{
+		var mapdata = JSON.parse(localStorage.getItem("CurrentMap"));
+		nodes  = mapdata[0];
+		lindata = mapdata[1];
+		reload("b"); 	
+	}
+ 
+	function undonode()
+	{
+		// lindata.map(function(d,i){	if (d[0]==nodes.length-1||d[1]==nodes.length-1) index.push(i)	});
+			nodes.splice(-1);
+
+				for (var i = 0; i < lindata.length; i++)
+				{
+					if(lindata[i][0]==nodes.length||lindata[i][1]==nodes.length)
+						{
+							lindata.splice(i,1);
+							i--;
+						}
+				}
+
+		// document.getElementById('showkar').innerHTML += index ;
+		// index.map(function(d){	lindata.splice(d,1) });
+		// for (var i = 0; i < index.length; i++)
+		// lindata.splice(index[i],1);		
+		// var lindata1 = lindata.join("<br>")
+		// document.getElementById('showkar').innerHTML += "<br>"+lindata1 ;
+
+		reload('n');
+	}
+	function undoline()
+	{
+		lindata.splice(-1,1);
+		reload('n');
+	}
+	function delnode(delchk)
+	{	if (!selected.length) return;
+		// nodes.splice(0,1);
+		// lindata.splice(0,2);
+		var creatlin = [];
+			var del = parseInt((selected[0]).slice(1));
+			nodes.splice(del,1);
+			
+				for (var i = 0; i < lindata.length; i++)
+				{
+					if(lindata[i][0]==del||lindata[i][1]==del)
+					{
+						creatlin = creatlin.concat(lindata.splice(i,1));
+						i--;
+					}
+				}
+				
+
+				if (delchk) {
+
+									if (creatlin.length==1)		creatlin=[];
+
+				creatlin = creatlin.map(function(d,i){	if(d[0]==del)return d[1]; else return d[0]	});
+
+
+
+				creatlin = creatlin.map(function(d,i){
+					
+					if (i==creatlin.length-1)
+						return [d,creatlin[0]];
+					else
+						return [d,creatlin[i+1]];
+				});
+
+				if (creatlin.length==2)		creatlin.splice(1,1);
+
+				for (var i = 0; i < creatlin.length; i++)
+				{
+					for (var j = 0; j<lindata.length; j++)
+					{
+						if (lindata[j][0]==creatlin[i][0]&&lindata[j][1]==creatlin[i][1])
+						{
+							creatlin.splice(i,1);
+							i--;
+						}
+						else
+						if (lindata[j][0]==creatlin[i][1]&&lindata[j][1]==creatlin[i][0])
+						{
+							creatlin.splice(i,1);
+							i--;
+						}
+					}
+				}
+			
+
+
+
+
+
+				creatlin.map(function(d){lindata.push(d)});
+				}
+
+
+		lindata = lindata.map(function(d){var a,b;  if(parseInt(d[0])>del) a=d[0]-1; else a=d[0];  if(parseInt(d[1])>del) b=d[1]-1; else b=d[1];  	return [a,b];	});
+
+		selected.forEach(function(d){	d3.select("#"+d).attr("class","ch") });
+		selected=[];
+		reload('n');
+	}
+	function reload(cls)
+	{
+		drawline(cls);
+	}
+	function setdefault()
+	{
+		lists();
+		nodes = circles;
+		lindata = linedata;
+		reload('n');
+	}
+	function view()
+	{
+		var mapdata = [];
+		mapdata.push(nodes);
+		mapdata.push(lindata);
+		var savestr = JSON.stringify(mapdata);
+		localStorage.setItem("CurrentMap",savestr);
+		window.location.href="spa.html";
+
+	}
+	function savemap(){
+		var name = document.getElementById('getname').value;
+		if (!name.length) return;
+		 var mapdata = [];
+		 mapdata.push(nodes);
+		 mapdata.push(lindata);
+		 var savestr = JSON.stringify(mapdata);
+		localStorage.setItem(name,savestr);
+	}
+	function reset(){
+		svg.selectAll("circle").remove(); idc=0;
+		svg.selectAll("line").remove();		idl=0;
+		selected=[]; lindata=[]; nodes = [];
+	}	
+	function creatnode(){
+		svg.selectAll("circle").remove(); idc=0;
+		svg.selectAll("circle").data(nodes)
+		.enter().append("circle")
+		.attr("cx", function(d) { return  		d.x;	})
+		.attr("cy", function(d) { return  		d.y;	})
+		.attr("r", radius).on("click",choose).style("fill", function(d){return "black"})
+		.attr("id", function(d,i) { return   "n"+(idc++);	});
+		sstyle();
+	}
+
+	function drawline(cls)
+	{	svg.selectAll("line").remove();		idl=0;
+		svg.selectAll("line").data(lindata).enter().append("line")
+		.attr("id", function(d,i){	return	 "lin"+(idl++);	    })
+		.attr("class", function(d,i){	if(i==lindata.length-1) return "lin"+cls; else return "bb" })
+		.attr("x1", function(d){	return	 nodes[d[0]].x		})
+		.attr("y1", function(d){	return	 nodes[d[0]].y		})
+		.attr("x2", function(d){ 	return	 nodes[d[1]].x		})
+		.attr("y2", function(d){	return	 nodes[d[1]].y		})
+		.style("stroke","lightgray").style("stroke-width", 7);
+		creatnode();
+
+		selected.forEach(function(d){	d3.select("#"+d).attr("class","ch") });
+		selected=[];
+
+	}
+
+	function choose(d){
+		
+		if(selected.length <2 && selected[0] != d3.select(this).attr("id"))
+		{	selected.push(d3.select(this).attr("id")); sstyle()	}
+		if (selected.length==2)
+		{ lindata.push([(selected[0]).slice(1),(selected[1]).slice(1)]); drawline('e');  }
+}
+function sstyle(){		selected.forEach(function(d){	d3.select("#"+d).attr("class","choose") })	}
+function nutral(){		selected.forEach(function(d){	d3.select("#"+d).attr("class","ch") });	selected=[]; reload('n'); }
+
+	function showmaplist()
+	{		
+		document.getElementById('listbody').innerHTML = "<div class='maplist'>Default Map <button class='btn btn-success btn1' onclick='setdefault()' data-dismiss='modal'>Selected by Default</button></div>";
+		for(var key in localStorage)
+		document.getElementById('listbody').innerHTML += "<div class='maplist'>"+key+"<button id="+key+" onclick='delmap(this)' class='btn btn-danger btn1'>Delete</button><button id="+key+" onclick='loadmap(this)' class='btn btn-success btn1' data-dismiss='modal'>Load</button></div>";
+	}
+	function delmap(itemid){
+		localStorage.removeItem(itemid.id);
+		showmaplist();
+	}
+	function deleteall()
+	{
+		localStorage.clear();
+		showmaplist();
+
+	}
+	function loadmap(key){
+		defaultmap = false;
+		var mapdata = JSON.parse(localStorage.getItem(key.id));
+		nodes  = mapdata[0];
+		lindata = mapdata[1];
+		reload("b");
+	}
+
+</script>
+</body>
+</html>
