@@ -4,6 +4,14 @@
 
 Live Project: <a href="tainxa.com/spa">Tainxa/SPA<a>
 
+# Shortest Path
+<p align="center"><img src="images/shortest-path.png"></p>
+
+# Least Nodes Path
+<p align="center"><img src="images/least-nodes-path.png"></p>
+
+
+
 # Description:
 Shortest path algorithm (SPA) is a javascript project used to explore these algorithms:
 
